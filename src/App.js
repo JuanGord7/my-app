@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
+import Tabla from './components/Tabla';
+import RobotDetail from './components/RobotDetail';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    return (
+        <div className="app-container">
+            <h1>Adopta un Robot con Robot Lovers!</h1>
+            <img src="./imgLogin.png" alt="Robot Lovers" className="app-image" />
+            <Routes>
+                <Route path="/" element={isAuthenticated ? <div className="content"><Tabla /><RobotDetail /></div> : <Login setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/robots/:robotId" element={<div className="content"><Tabla /><RobotDetail /></div>} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
