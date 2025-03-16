@@ -1,0 +1,16 @@
+{
+    "app.title": "Adopt a Robot with Robot Lovers!",
+    "login.title": "Login",
+    "login.username": "Username",
+    "login.password": "Password",
+    "login.submit": "Submit",
+    "login.cancel": "Cancel",
+    "login.error": "Authentication error. Please check your credentials",
+    "table.header.id": "ID",
+    "table.header.name": "Name",
+    "table.header.model": "Model",
+    "table.header.manufacturer": "Manufacturer",
+    "robot.detail.year": "Year of Manufacture",
+    "robot.detail.processing": "Processing Capacity",
+    "robot.detail.humor": "Humor"
+}

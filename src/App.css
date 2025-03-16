@@ -5,10 +5,13 @@
   justify-content: center;
   height: 100vh;
   text-align: center;
+  padding-top: 200px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .app-image {
-  width: 700px;
+  width: 900px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -35,4 +38,18 @@
 .robot-row {
   display: flex;
   justify-content: space-between;
+}
+
+.title-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-box {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.contact-info {
+  padding-top: 50px;
+  padding-bottom: 10px;
 }

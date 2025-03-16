@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './RobotDetail.css';
 
 function RobotDetail() {
     const { robotId } = useParams();
     const [robot, setRobot] = useState(null);
     const [error, setError] = useState('');
+    const intl = useIntl();
+
+    const getRawUrl = (url) => {
+        if (url.includes('github.com') && url.includes('blob')) {
+          return url.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/');
+        }
+        return url;
+    };
 
     useEffect(() => {
         const fetchRobot = async () => {
@@ -35,40 +45,19 @@ function RobotDetail() {
 
     return (
         <div className="container detail-container">
-            <h2>Detalle del Robot</h2>
-            <img src={robot.imagen} alt={robot.nombre} className="img-fluid" />
-            <table className="table table-striped">
-                <tbody>
-                    <tr>
-                        <th>ID</th>
-                        <td>{robot.id}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombre</th>
-                        <td>{robot.nombre}</td>
-                    </tr>
-                    <tr>
-                        <th>Modelo</th>
-                        <td>{robot.modelo}</td>
-                    </tr>
-                    <tr>
-                        <th>Empresa Fabricante</th>
-                        <td>{robot.empresaFabricante}</td>
-                    </tr>
-                    <tr>
-                        <th>Año de Fabricación</th>
-                        <td>{robot.añoFabricacion}</td>
-                    </tr>
-                    <tr>
-                        <th>Capacidad de Procesamiento</th>
-                        <td>{robot.capacidadProcesamiento}</td>
-                    </tr>
-                    <tr>
-                        <th>Humor</th>
-                        <td>{robot.humor}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className="robot-card">
+                <h2 className="robot-name">{robot.nombre}</h2>
+                <img src={getRawUrl(robot.imagen)} alt={robot.nombre} className="robot-image" />
+                <div className="robot-attribute">
+                    <span className="arrow">➔</span> <strong>{intl.formatMessage({ id: 'robot.detail.year' })}:</strong> {robot.añoFabricacion}
+                </div>
+                <div className="robot-attribute">
+                    <span className="arrow">➔</span> <strong>{intl.formatMessage({ id: 'robot.detail.processing' })}:</strong> {robot.capacidadProcesamiento}
+                </div>
+                <div className="robot-attribute">
+                    <span className="arrow">➔</span> <strong>{intl.formatMessage({ id: 'robot.detail.humor' })}:</strong> {robot.humor}
+                </div>
+            </div>
         </div>
     );
 }
